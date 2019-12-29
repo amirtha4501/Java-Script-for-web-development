@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Operators and its operations</title>
+</head>
+<body>
+
+    <!-- JavaScript -->
+    <script>
+    // Declaring variables
+
+    // Number type 
+        let a = 1, 
+            b = 2, 
+            c = 3,
+            d = 6;
+
+        let x = 5,
+            y = 9;
+    // String type
+        let p = "dog", 
+            q = "cat",
+            r = "rat";
+
+        console.group("Number Operation");
+            
+            // Addition
+            console.log(a + b + c); // output : 6
+            
+            // Subtraction
+            Console.log(c - b); // output : 1
+            
+            // Multiplication
+            console.log(a * b * c); // output : 6
+            
+            // Division
+            console.log(d / c); // output : 2
+            
+            // Modulo
+            console.log(d % c); // output : 0
+            
+            b += c; // b = b + c
+            console.log(b); // 5
+            
+            // Incrementing, Decrementing
+            // x = 5   y = 9
+            
+            console.log(x++); // post increment output : 5
+            console.log(x); // output : 6 
+            
+            console.log(++x); // pre increment output : 7
+            
+            console.log(y--); // post decrement output : 9
+            console.log(y); // output : 8
+
+            console.log(--y); // pre decrement output : 7
+       
+        console.groupEnd();
+
+        console.groupCollapsed("String Operations");
+       
+            console.log(p + " " + q); // dog cat
+            console.log(r + "-" + a); // rat-1 
+            console.log(d + e + f); //dogcatrat
+       
+        console.groupEnd();
+    </script>
+</body>
+</html>
