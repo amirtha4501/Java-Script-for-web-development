@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Built-in objects</title>
+</head>
+<body>
+    <script>
+        const a = 'My string';
+        const b = String('My string');        
+
+        console.groupCollapsed('Type check');
+            console.log(a==b); // true
+            console.log(a===b); // true
+            console.log(
+                typeof a, // string
+                typeof b, // string
+                typeof new String() // object
+            );
+        console.groupEnd();
+
+        // Built-in for strings
+        console.groupCollapsed('String Built-in');
+            line = "My Test String";
+            trim_line = 'Happy life            ';
+            console.log(line.toUpperCase());
+            console.log(line.toLowerCase());
+            console.log(line.startsWith('My Test')); // true
+            console.log(line.startsWith('this')); // false
+            console.log(trim_line.trim());
+            console.log('Hello!\n'.repeat(5));
+        console.groupEnd();
+
+        console.groupCollapsed('Number Built-in');
+            console.log(5..toString()); // 5
+            console.log((5).toString()); // 5
+            console.log(Number.isInteger(1)); // true
+            console.log(Number.isInteger(1.13)); // false
+            console.log(0.34135135.toFixed(3)); // 0.341
+            console.log(Math.random().toFixed(2)); 
+            console.log(Math.ceil(9.96)); // 10
+            console.log(Math.floor(5.21)); // 5
+        console.groupEnd();
+
+        my_arr = ['harsha','varsha','nisha'];
+
+        console.groupCollapsed('Array Built-in');
+            console.log(my_arr.length); // 3
+            console.log(my_arr.join('_')); // harsha_varsha_nisha
+            console.log(my_arr.pop(),my_arr); // nisha ['harsha','varsha', 'nisha']
+            console.log(my_arr.push('nisha'),my_arr); // ['harsha','varsha','nisha']
+        console.groupEnd();
+
+        my_arr.forEach((person) => {
+            console.log(person);            
+        });
+    </script>
+</body>
+</html>
