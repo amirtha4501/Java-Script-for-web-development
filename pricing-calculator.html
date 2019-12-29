@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pricing calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <style>
+        body, .jumbotron { padding: 40px;}
+        .text-right {
+            font-size: 40px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron">
+        
+        <h2>
+            How much do chocolates &#x1F36B; cost?
+        </h2>
+
+        <form>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" name="price" value="10">
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">
+                    Quantity
+                    
+                    <span class="label badge quantity-label"> 1 </span>
+
+                </label>
+                <input type="range" class="form-control" name="quantity" value="1" min="1" max="50" step="1">
+            </div>
+
+        </form>
+        <div class="text-right text-giant total"></div>
+
+    </div>
+
+
+
+
+    <!-- JavaScript part -->
+    <script>
+        
+        const price_input = document.querySelector('[name=price]');
+        const quantity_input = document.querySelector('[name=quantity]');
+        const total = document.querySelector('.total');
+        const quantity_label = document.querySelector('.quantity-label');
+
+        function calcChocoCost() {
+            const price = price_input.value;
+            const quantity = quantity_input.value;
+            const cost =  price * quantity;
+            console.log(cost);
+            total.innerText = `₹` + cost.toFixed(2);
+        }
+
+        function changeQuantity() {
+            const quantity = quantity_input.value;
+            quantity_label.innerText = quantity; 
+        }
+
+        calcChocoCost();
+
+        price_input.addEventListener('input', calcChocoCost);
+        quantity_input.addEventListener('input', calcChocoCost);
+        quantity_input.addEventListener('input', changeQuantity);
+
+    </script>
+</body>
+</html>
