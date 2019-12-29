@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Objects</title>
+</head>
+<body>
+    <script>
+        const student = {
+            name: 'Adam',
+            domain: 'CSE',
+            graduation: 'UG',
+            degree: function() {
+                return this.name + 'is pursuing' + this.domain
+            },
+            language: function(comp_lang) {
+                return `He know ${comp_lang}`;
+            }
+        };
+
+        // access a property
+        console.log(student.name); // Adam
+        console.log(student[name]);  // Undefined
+        console.log(student['name']);  // Adam
+
+        const student_domain = 'domain';
+        console.log(student[student_domain]);
+        // access a method(function)
+        console.log(student.degree());
+        console.log(student.language('python').toUpperCase());
+    </script>
+
+</body>
+</html>
