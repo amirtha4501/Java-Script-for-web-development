@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Stop clock &#x23F0;</title>
+    <style>
+        body,
+        .jumbotron {
+            padding: 40px;
+        }
+
+        .timer {
+            font-size: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <div class="timer">
+            <span class="minutes">00</span>
+            :
+            <span class="seconds">00</span>
+        </div>
+        <div class="timer-buttons">
+            <button class="btn btn-lg btn-success" data-action="start">
+                Start
+            </button>
+            <button class="btn btn-lg btn-danger" data-action="stop">
+                Stop
+            </button>
+            <button class="btn btn-link btn-block" data-action="reset">
+                Reset
+            </button>
+        </div>
+    </div>
+    <script>
+        const start_button = document.querySelector('[data-action="start"]');
+        const stop_button = document.querySelector('[data-action="stop"]');
+        const reset_button = document.querySelector('[data-action="reset"]');
+        const minutes = document.querySelector('.minutes');
+        const seconds = document.querySelector('.seconds');
+        let timer_time = 0;
+        let is_running = false;
+        let interval;
+
+        function startTimer() {
+            if(is_running) return;
+
+            is_running = true;
+            interval = setInterval(incrementTimer, 1000);
+        }
+
+        function stopTimer() {
+            if(!is_running) return
+            
+            is_running = false;
+            clearInterval(interval);
+        }
+
+        function resetTimer() {
+            stopTimer();
+
+            minutes.innerText = '00';
+            seconds.innerText = '00';
+
+        }
+
+        function incrementTimer() {
+            timer_time++;
+            console.log("i'm gng");
+            const num_of_minutes = Math.floor(timer_time / 60);
+            const num_of_seconds = timer_time % 60;
+
+            // console.count({num_of_minutes,num_of_seconds});
+            minutes.innerText = pad(num_of_minutes);
+            seconds.innerText = pad(num_of_seconds);
+
+        }
+
+        function pad(number) {
+            return (number < 10)? "0" + number : number;
+        }
+
+        start_button.addEventListener('click', startTimer);
+        stop_button.addEventListener('click', stopTimer);
+        reset_button.addEventListener('click', resetTimer);
+
+    </script>
+</body>
+
+</html>
