@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        body { padding: 30px; }
+        .container {
+            padding-top: 16%;
+            background: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1>Hello World!</h1>
+        <br>
+        <button type="button" class="btn btn-danger" onclick="changeText()">Click me</button>
+    </div>
+    <!-- start javascript -->
+    <script>
+    const header = document.querySelector('h1');
+    function changeText(){
+    header.innerText = "Hello world again!";
+    }
+    </script>
+</body>
+</html>
