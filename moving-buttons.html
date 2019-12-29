@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Touch me not buttons&#x1F648;</title>
+    <style>
+        body, .jumbotron {
+            padding: 30px;
+        }
+        .btn-crazy {
+            position: absolute;
+            top: 30px;
+            left: 30%;
+            width: 25%;
+            transition: 0.4s ease all;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" class="btn-crazy btn btn-lg btn-danger">
+        Click me!
+    </button>
+    <button type="button" class="btn-crazy btn btn-lg btn-success">
+        Click me!
+    </button>
+    <button type="button" class="btn-crazy btn btn-lg btn-primary">
+        Click me!
+    </button>
+    <button type="button" class="btn-crazy btn btn-lg btn-secondary">
+        Click me!
+    </button>
+
+    <script>
+    
+        const crazy_buttons = document.querySelectorAll('.btn-crazy')
+
+    // One of the methods to implement the movement of buttons
+        // function moveButton(event) {
+
+        //     console.log(event);
+        //     const button = event.target;
+
+        //     const offset_left = Math.random() * (window.innerWidth - button.clientWidth);
+        //     const offset_top = Math.random() * (window.innerHeight - button.clientHeight);
+
+        //     button.style.left = offset_left + 'px';
+        //     button.style.top = offset_top + 'px';
+
+        // }
+
+        // crazy_buttons.forEach(button => button.addEventListener('mouseenter', moveButton));
+
+
+        function moveButton() {
+            const offset_left = Math.random() * (window.innerWidth - this.clientWidth);
+            const offset_top = Math.random() * (window.innerHeight - this.clientHeight);
+
+            this.style.left = offset_left + 'px';
+            this.style.top = offset_top + 'px';
+        }
+
+        crazy_buttons.forEach(button => button.addEventListener('mouseenter', moveButton));
+
+    </script>
+</body>
+</html>
