@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loops & conditions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="user-list"></div>
+    <script>
+        const name = prompt("What's your name?");
+
+        if (name == 'ammu') {
+            alert("Hey Ammu!");
+        }
+        else if (name == "harsha") {
+            alert("Hey! What's up?");
+        }
+        else {
+            alert("Hello!");
+        }
+
+        const userList = document.querySelector(".user-list");
+        const users = [
+            {name: "haasu", nature: "quiet"},
+            {name: "lakshu", nature: "naughty"}
+        ];
+
+    //  for loop
+        for(let i=0; i<users.length; i++) {
+            const user = users[i];
+            const user_data = document.createElement('div');
+            user_data.classList.add('jumbotron','text-center');
+            user_data.innerText = `${user.name} is very ${user.nature}`;
+            userList.appendChild(user_data);
+        }
+    
+    //  while loop
+        i = 0;
+        while (i<users.length) {
+            const user = users[i];
+            const user_data = document.createElement('div');
+            user_data.classList.add('jumbotron','text-center');
+            user_data.innerText = `${user.name} is very ${user.nature}`;
+            userList.appendChild(user_data);
+            i++
+        }
+
+    // do while loop
+        i = 0;
+        do {
+            const user = users[i];
+            const user_data = document.createElement('div');
+            user_data.classList.add('jumbotron','text-center');
+            user_data.innerText = `${user.name} is very ${user.nature}`;
+            userList.appendChild(user_data);
+            i++
+        } while (i<users.length);
+
+    // for ...of loop
+        for (let user of users) {
+            const user_data = document.createElement('div');
+            user_data.classList.add('jumbotron','text-center');
+            user_data.innerText = `${user.name} is very ${user.nature}`;
+            userList.appendChild(user_data);
+        }
+
+    </script>
+</body>
+</html>
