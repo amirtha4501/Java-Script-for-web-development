@@ -1,112 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+
     <title>Bookmarking&#x1F4D1;</title>
     <style>
-        body { 
+        body {
             background-image: url('img/ocean.webp');
-            background-size: cover;
-            padding: 30px;
+            background-size : cover;
+            padding         : 30px;
         }
+
         .content {
-            font-size: 19px;
-            line-height: 1.5;
-            max-width: 500px;
-            margin: 0 auto;
-            position: relative;
+            font-size    : 19px;
+            line-height  : 1.5;
+            max-width    : 500px;
+            margin       : 0 auto;
+            position     : relative;
             border-radius: 8px;
         }
+
         .floater {
-            background: white; 
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.4) all;
+            background   : white;
+            transition   : 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.4) all;
             margin-bottom: 35px;
-            z-index: 11;
+            z-index      : 11;
         }
+
         .floater input[type=text] {
-            padding: 30px 20px;
-            border: none;
+            padding   : 30px 20px;
+            border    : none;
             box-shadow: none;
-            font-size: 19px;
+            font-size : 19px;
             transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.4) all;
         }
+
         .floater-bottom {
-            padding: 5px 10px 5px;
+            padding   : 5px 10px 5px;
             text-align: right;
             border-top: 1px solid #dddddd;
         }
+
         .floater-bottom button {
             padding: 4px 8px;
         }
+
         .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.80);
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transform: 0.3s ease opacity;
-            z-index: 10;
+            position      : fixed;
+            top           : 0;
+            left          : 0;
+            background    : rgba(0, 0, 0, 0.80);
+            width         : 100%;
+            height        : 100%;
+            opacity       : 0;
+            transform     : 0.3s ease opacity;
+            z-index       : 10;
             pointer-events: none;
         }
-        body.show-floater .floater{
+
+        body.show-floater .floater {
             transform: scale(1.2);
         }
+
         body.show-floater .floater input[type=text] {
-            padding: 50px 20px;
+            padding  : 50px 20px;
             font-size: 19px;
         }
-        body.show-floater .overlay {
-            opacity: 0.9;
-            pointer-events: all;
-        } 
 
-/* ----------------------------------------------- */
+        body.show-floater .overlay {
+            opacity       : 0.9;
+            pointer-events: all;
+        }
 
         .bookmarks-list {
             z-index: 9;
         }
 
         .bookmark {
-            display: block;
-            background: white;
-            color: grey;
-            padding: 20px;
-            transition: 0.3s ease all;
+            display      : block;
+            background   : white;
+            color        : grey;
+            padding      : 20px;
+            transition   : 0.3s ease all;
             border-bottom: 1px solid #dddddd;
-            font-size: 17px;
-        }
-        .bookmark:hover {
-            color: blue;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .bookmark:first-child {
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-        }
-        .bookmark:last-child {
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-            border-bottom: 0;
+            font-size    : 17px;
         }
 
+        .bookmark:hover {
+            color          : blue;
+            cursor         : pointer;
+            text-decoration: none;
+        }
+
+        .bookmark:first-child {
+            border-top-left-radius : 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .bookmark:last-child {
+            border-bottom-left-radius : 5px;
+            border-bottom-right-radius: 5px;
+            border-bottom             : 0;
+        }
     </style>
 </head>
-<body >
+
+<body>
     <div class="overlay"></div>
-    
+
     <div class="floater content">
         <form class="bookmark-form">
             <div class="floater-top">
                 <input type="text" class="form-control" placeholder="What's on your mind?">
             </div>
-            
+
             <div class="floater-bottom">
                 <button type="submit" class="btn btn-primary btn-sm">
                     Add
@@ -115,14 +126,11 @@
         </form>
     </div>
 
-    <div class="bookmarks-list content">
-        <!-- <a class="bookmark">Hey! I'm here.</a> -->
-
-    </div>
+    <div class="bookmarks-list content"></div>
 
     <script>
-        const body = document.body;
-        const input = document.querySelector('input[type=text]');
+        const body    = document.body;
+        const input   = document.querySelector('input[type=text]');
         const overlay = document.querySelector('.overlay');
 
         function showFloater() {
@@ -131,7 +139,7 @@
 
         function closeFloater() {
             if (body.classList.contains('show-floater')) {
-            body.classList.remove('show-floater');
+                body.classList.remove('show-floater');
             }
         }
 
@@ -139,28 +147,64 @@
         input.addEventListener('focusout', closeFloater);
         overlay.addEventListener('click', closeFloater);
 
-        // ---------------------------------
-
         const bookmarks_list = document.querySelector('.bookmarks-list');
-        const bookmark_form = document.querySelector('.bookmark-form');
+        const bookmark_form  = document.querySelector('.bookmark-form');
         const bookmark_input = bookmark_form.querySelector('input[type=text]');
+        const bookmarks      = JSON.parse(localStorage.getItem('bookmarks')) || [];
+
+        fillBookmarksList(bookmarks);
 
         function createBookmark(e) {
             e.preventDefault();
+            const title    = bookmark_input.value;
+            const bookmark = {
+                title: title
+            };
 
-            const title = bookmark_input.value;
-            const bookmark = document.createElement('a');
-            bookmark.className = 'bookmark'; 
-            bookmark.innerText = title;
-            bookmark.href = "#";
-            bookmark.target = '_blank';
-            bookmarks_list.appendChild(bookmark);
-
+            bookmarks.push(bookmark);
+            fillBookmarksList(bookmarks);
+            storeBookmarks(bookmarks);
             bookmark_form.reset();
+
+            console.table(bookmarks);
+
+            // Other way for creating bookmark
+            // const bookmark     = document.createElement('a');
+            // bookmark.className = 'bookmark';
+            // bookmark.innerText = title;
+            // bookmark.href      = "#";
+            // bookmark.target    = '_blank';
+            // bookmarks_list.appendChild(bookmark);
 
         }
 
-        bookmark_form.addEventListener('submit',createBookmark);
+        function fillBookmarksList(bookmarks = []) {
+            const bookmarks_html = bookmarks.map((bookmark) => {
+                return `
+                    <a href="#" class="bookmark">
+                        ${bookmark.title}
+                    </a>
+                `;
+            }).join('');
+            
+            bookmarks_list.innerHTML = bookmarks_html;
+
+            // another way for implementing the function fillBookmarksList()
+            // let bookmarks_html = '';
+            // for(let i = 0; i < bookmarks.length; i++) {
+                // bookmarks_html += `
+                //     <a href="#" class="bookmark">
+                //         ${bookmarks[i].title}
+                //     </a>
+                // `;
+            // }
+        }
+
+        function storeBookmarks(bookmarks = []) {
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        }
+
+        bookmark_form.addEventListener('submit', createBookmark);
 
     </script>
 </body>
