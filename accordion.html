@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Accordion</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   
+   <style>
+        html {
+            overflow-y: scroll;
+        }
+        body, .container { 
+            padding: 40px;
+            background: black;
+            }
+        .jumbotron {
+            background:white;
+            border-radius: 10px !important;
+            padding: 30px;
+            }
+        .question {
+            border-top: 1px solid #efefef;
+            padding: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+        .question h2{
+            margin: 0;
+            color: darkblue ;
+            font-weight: 700 !important;
+        }
+        .question .glyphicon {
+            position: absolute;
+            right: 20px;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            color: darkblue ;
+            transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+        }
+        .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+        }
+        .accordion li.open .question .glyphicon {
+            transform: rotate(180deg);
+        }
+        .accordion li.open .answer{
+            max-height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron accordion">
+            <ul class="list-unstyled">
+                <li class="open">
+                    <div class="question">
+                        <h2>What is the use of JavaDoc?</h2>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </div>
+                    <div class="answer">
+                        <p>
+                            JavaDoc tool is a document generator tool in Java programming language for generating standard documentation in HTML format. It generates API documentation. It parses the declarations ad documentation in a set of source file describing classes, methods, constructors and fields.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled">
+                <li>
+                    <div class="question">
+                        <h2>What is JavaDoc Command?</h2>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </div>
+                    <div class="answer">
+                        <p>
+                            javadoc is a command-line tool for extracting special comments (called doc comments) from java source files and generating an easy-to-use HTML file tree containing them. ... The comments can include standard HTML markup and javadoc @tags . The Java API Specification is an example of what javadoc produces.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled">
+                <li>
+                    <div class="question">
+                        <h2>What is a JavaDoc jar?</h2>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </div>
+                    <div class="answer">
+                        <p>
+                            Extracting Java Docs. The BEA WebLogic Java Adapter for Mainframe (JAM) product comes with HTML pages that document the JAM Java classes. These also are referred to as "javadoc" files. They are located in the jamdoc.jar file, found in the JAM installation directory.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+ 
+            <ul class="list-unstyled">
+                <li>
+                    <div class="question">
+                        <h2>How do I open a JavaDoc file?</h2>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </div>
+                    <div class="answer">
+                        <p>
+                            To see the javadoc of a class having attached source in eclipse: select Window -> show view -> javadoc (or alt + shift + q, j). then in the javadoc view, right click -> open attached javadoc (or shift + F2), this will display the javadoc of the class in the internal browser of eclipse.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled">
+                <li>
+                    <div class="question">
+                        <h2>What is an API document?</h2>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </div>
+                    <div class="answer">
+                        <p>
+                            API documentation is a technical content deliverable, containing instructions about how to effectively use and integrate with an API. ... API description formats like the OpenAPI/Swagger Specification have automated the documentation process.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <script>
+        const accordion = document.querySelector('.accordion');
+        const items = accordion.querySelectorAll('li');
+        const questions = accordion.querySelectorAll('.question');
+
+        function toggleAccordion() {
+            const this_item = this.parentNode;
+            
+            items.forEach(item => {
+                if (this_item == item) {
+                    this_item.classList.toggle('open');
+                    return;
+                }
+                item.classList.remove('open');
+            })
+
+        }
+
+        questions.forEach(question => question.addEventListener('click', toggleAccordion))
+    </script>
+</body>
+</html>
