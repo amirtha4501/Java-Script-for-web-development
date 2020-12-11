@@ -1,0 +1,26 @@
+Promise:
+    A promise is an object that may produce a single value some time in the future: either 
+a resolved value, or a reason that it’s not resolved (e.g., a network error occurred). A promise may be in one of 3 possible states: fulfilled, rejected, or pending.
+    A callback used to initialize the promise. This callback is passed two arguments:
+a resolve callback used to resolve the promise with a value or the result of another promise,
+and a reject callback used to reject the promise with a provided reason or error.
+
+A promise is created with new Promise(), which takes in a function as an argument:
+(resolve, reject) => {}
+
+In this function, resolve and reject are callback functions.
+
+If we return a Promise, we've access to the then, catch, and finally methods.
+
+then: The callback to execute when the Promise is resolved.
+
+catch: The callback to execute when the Promise is rejected.
+
+
+Async & Await:
+    In the async function:
+        - Instead of the then method, we can get the results directly
+        just by putting await before the promise.
+        - Instead of the catch method, we can use the try, catch syntax.
+
+Promise is used a lot when fetching data from an API. To fetch the data, we can use the fetch API.

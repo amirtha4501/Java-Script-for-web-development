@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <!-- <header>Kayo's birthday</header> -->
+
+    <script>
+
+        const onMyBirthDay = (isKayoSick) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if(!isKayoSick) {
+                        resolve(2);
+                    } else {
+                        reject(new Error("I am sad"));
+                    }
+                }, 2000);
+            });
+        };
+
+        onMyBirthDay(true)
+            .then((result) => {
+                alert(`I've ${result} cakes`);
+            })
+            .catch((error) => {
+                alert(error);
+            })
+            .finally(() => {
+                alert("However the party was there!");
+            });
+    </script>
+</body>
+</html>

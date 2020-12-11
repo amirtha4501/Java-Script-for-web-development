@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country info</title>
+</head>
+<body>
+    <h3>Country info</h3>
+
+    <p></p>
+    <script>
+
+        const fetchData = async () => {
+            const result = await fetch("https://restcountries.eu/rest/v2/alpha/col");
+        
+            const country = await result.json(); // since the result is only an http response, we've to call json()
+
+            const p = document.querySelector('p');
+            p.innerHTML = country.name + "</br>" + country.capital + "</br>" + country.subregion + "</br>" + country.population;
+        };
+
+        fetchData();
+
+        const fetchCountry = async (alpha3Code) => {
+            try {
+                const result = await fetch(`https://restcountries.eu/rest/v2/alpha/${alpha3Code}`);
+
+                const data = await result.json();
+                return data;
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        const fetchCountryAndNeighbors = async () => {
+            const columbia = await fetchCountry("col");
+            alert("view console for result");
+            console.log(columbia);
+
+            const neighbors = await Promise.all(
+                columbia.borders.map((border) => fetchCountry(border))
+            );
+            console.log("\nNeighbours");
+            console.log(neighbors);
+        };
+
+        fetchCountryAndNeighbors();
+
+    </script>
+</body>
+</html>
